@@ -9,3 +9,6 @@ edition = "2024"
 members = [
   "crates/*",
 ]
+
+[workspace.dependencies]
+solar = { path = "./crates/solar" }

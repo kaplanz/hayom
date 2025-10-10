@@ -1,14 +1,33 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use jiff::civil::Date;
+use jiff::{Error, Timestamp};
+
+/// Suntimes calculations.
+mod calc;
+
+/// Suntimes times for a given day.
+#[derive(Debug)]
+pub struct Day {
+    /// Calendar date.
+    pub date: Date,
+    /// Sunrise time.
+    pub rise: Timestamp,
+    /// Sunset time.
+    pub down: Timestamp,
+    /// Private field.
+    _prv: (),
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+impl Day {
+    /// Constructs a new `Day`.
+    pub fn new(date: Date, place: Geo) -> Result<Self, Error> {
+        calc::suntimes(date, place)
     }
+}
+
+/// A geographic coordinate on Earth.
+pub struct Geo {
+    /// Longitude (coordinate).
+    pub lon: f64,
+    /// Latitude (coordinate).
+    pub lat: f64,
 }
