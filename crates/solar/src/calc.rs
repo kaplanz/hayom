@@ -52,7 +52,7 @@ pub fn suntimes(date: Date, place: Geo) -> Result<Day, Error> {
     // Hour angle
     let cos_w = {
         let lat = place.lat.to_radians();
-        let elv = (-0.833_f64).to_radians();
+        let elv = (-0.833_f64 - (2.076 * place.elv.sqrt() / 60.)).to_radians();
         (elv.sin() - lat.sin() * sin_d) / (lat.cos() * cos_d)
     };
     let w_rad = cos_w.acos();
@@ -85,6 +85,7 @@ mod tests {
         let place = Geo {
             lat: 33.00801,
             lon: 35.08794,
+            elv: 0.,
         };
 
         // Calculate suntimes

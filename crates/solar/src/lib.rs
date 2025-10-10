@@ -30,4 +30,6 @@ pub struct Geo {
     pub lon: f64,
     /// Latitude (coordinate).
     pub lat: f64,
+    /// Elevation (meters).
+    pub elv: f64,
 }
