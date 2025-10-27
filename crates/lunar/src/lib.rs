@@ -1,14 +1,23 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+mod conv;
+
+/// Hebrew months.
+pub enum Month {
+    Nisan = 1,
+    Iyyar,
+    Sivan,
+    Tamuz,
+    Av,
+    Elul,
+    Tishrei,
+    Cheshvan,
+    Kislev,
+    Tevet,
+    Shvat,
+    Adar1,
+    Adar2,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+impl Month {
+    /// Length, in days, of a lunar month.
+    const LENGTH: f64 = 765433. / 25920.;
 }

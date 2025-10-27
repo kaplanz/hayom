@@ -11,4 +11,7 @@ members = [
 ]
 
 [workspace.dependencies]
+jiff = "0.2.15"
+lunar = { path = "./crates/lunar" }
 solar = { path = "./crates/solar" }
+thiserror = "2.0.17"
