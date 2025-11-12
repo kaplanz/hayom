@@ -5,7 +5,7 @@ use jiff::{Error, Timestamp};
 mod calc;
 
 /// Suntimes times for a given day.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Day {
     /// Calendar date.
     pub date: Date,

@@ -19,5 +19,6 @@ pub enum Month {
 
 impl Month {
     /// Length, in days, of a lunar month.
+    #[expect(unused)]
     const LENGTH: f64 = 765433. / 25920.;
 }

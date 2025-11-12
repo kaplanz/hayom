@@ -5,6 +5,10 @@ version = 4
 [[package]]
 name = "hayom"
 version = "0.1.0"
+dependencies = [
+ "jiff",
+ "solar",
+]
 
 [[package]]
 name = "jiff"
