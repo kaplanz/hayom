@@ -63,8 +63,8 @@ pub fn suntimes(date: Date, place: Geo) -> Result<Day, Error> {
     let jdown = trans + w_deg / 360.;
 
     // Convert to timestamp
-    let rise = j2ts(jrise)?;
-    let down = j2ts(jdown)?;
+    let rise = j2ts(jrise)?.round(jiff::TimestampRound::new().smallest(jiff::Unit::Second))?;
+    let down = j2ts(jdown)?.round(jiff::TimestampRound::new().smallest(jiff::Unit::Second))?;
 
     Ok(Day {
         date,
@@ -92,7 +92,17 @@ mod tests {
         let day = suntimes(date, place).unwrap();
 
         // Ensure matches expectation
-        assert_eq!(day.rise, Timestamp::constant(1760067670, 032991409));
-        assert_eq!(day.down, Timestamp::constant(1760109268, 838135958));
+        assert_eq!(
+            day.rise,
+            "2025-10-10T06:41:10+03:00[Asia/Jerusalem]"
+                .parse::<Timestamp>()
+                .unwrap()
+        );
+        assert_eq!(
+            day.down,
+            "2025-10-10T18:14:29+03:00[Asia/Jerusalem]"
+                .parse::<Timestamp>()
+                .unwrap()
+        );
     }
 }
